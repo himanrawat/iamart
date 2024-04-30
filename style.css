@@ -25,7 +25,7 @@
             box-sizing: border-box;
     font-family: "Plain Light";
     color: #fff;
-    /* cursor: none;     */
+    cursor: none;    
     scrollbar-width: none;
 }
 
@@ -35,17 +35,13 @@ html, body {
     background-color: #000;
 }
 
-/* #crsr {
-    height: 2.3vw;
-    width: 2.3vw;
-    border: 1px solid #fff;
-    border-radius: 50%;
-    position: fixed;
-    z-index: 9999;
-    transform: translate(-50%, -50%);
+.mousefollower {
+   background-color: #fff;
+    border: 2px solid #fff;
+    scale: 2;
     mix-blend-mode: difference;
 } 
-*/
+
 
 #loader{
     background-color: #0B0B0B;
@@ -56,7 +52,7 @@ html, body {
     justify-content: center;
     padding-left: 6vw;
     position: fixed;
-    z-index: 9999;
+    z-index: 9999999;
 }
 
 .loader-content {
@@ -223,6 +219,7 @@ nav {
 
 .content {
     width: 90%;
+  
     /* background-color: red; */
 }
 
@@ -254,6 +251,9 @@ nav {
     position: relative;
     background-image: url('assets/thumbnail.jpg');
     width: 100%;
+    background-size: cover;
+    background-position: center;
+
 }
 
 .video-container img {
@@ -267,6 +267,9 @@ nav {
 .video-container video {
     /* height: 85%; */
     width: 100%;
+    width: 100%;
+    object-fit: cover;
+    opacity: 0;
     
 }
 
@@ -278,11 +281,41 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 999;
+    z-index: 9999;
     top: -10%;
     left: 80%;
     background-color: #FFA63D;
 }
+
+#work-gif {
+    height: 20vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+}
+
+.hover-heading {
+    /* background-color: red; */
+    width: fit-content;
+    position: relative;
+    height: fit-content;
+    z-index: 9;
+    
+}
+
+.hover-heading h1:hover {
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    font-weight: 100;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 12px;
+    transition: all .4s ease-in-out;
+}
+
 
 .underline {
     width: 100%;
@@ -306,7 +339,7 @@ nav {
 /* project section */
 
 ._canvas_container {
-    z-index: 9999999999 !important;
+    z-index: 99 !important;
     pointer-events: none;
 }
 
@@ -321,7 +354,7 @@ nav {
     display: flex ;
     overflow: hidden;
     justify-content:space-between ;
-    width: 65%;
+    width: 100%;
 }
 
 .project-title {
@@ -574,7 +607,7 @@ transition: all ease-in-out 0.3s;
     
 }
 
-@media (max-width: 575.98px) { 
+@media (max-width: 767.98px) { 
     .title {
         padding: 8vw 0;
     }
@@ -643,29 +676,71 @@ transition: all ease-in-out 0.3s;
         width: 100%;
         text-align: center;
     }
-}
 
-@media (max-width: 1024px) {
-    .svg-wrapper {
-        display: none;
+    .project-container {
+        flex-wrap: wrap;
+        /* width: 100vw; */
+        /* background-color: red; */
     }
 
     .projects {
-        width: 100%;
         flex-wrap: wrap;
     }
-    .project-sm-container, .project-sm-container {
+
+    .project-lg-container, .project-sm-container {
+        /* height: ; */
         width: 100%;
-        height: 100%;
+        margin: 8vw 0;
     }
 
-    .sm-container, .lg-container {
+    .image-container {
         width: 100vw;
-        /* height: auto; */
+        height: 100vh;
     }
 
-    .image-container img {
-        width: 100%;
-        height: 100%;
-    }
+    
 }
+
+@media (max-width: 991.98px) {
+    .project-lg-container, .project-sm-container {
+        width: 100%;
+        /* background-color: red; */
+        padding: 2vw;
+    }
+
+    .image-container {
+        width: 100%;
+        height: 50vh;
+        /* padding: 2vw; */
+    }
+
+}
+
+@media screen and (max-width: 991.98px) { 
+
+    .project-title {
+        font-size: 4vw;
+    }
+
+    .svg-icon {
+        display: none ;
+    }
+
+    .project-details {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        padding: 2vw 0;
+    }
+
+    .project-info {
+        width: 100%;
+        margin: 2vw 0;
+    }
+    
+    .project-date {
+        width: 100%;
+        text-align: start;
+    }
+
+    
+ }

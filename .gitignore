@@ -1,0 +1,9 @@
+# Ignore notes file
+notes
+
+# Ignore test.js file
+test.js
+
+
+# Ignore delete directory inside assets
+assets/delete/
