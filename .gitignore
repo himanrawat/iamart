@@ -7,3 +7,6 @@ test.js
 
 # Ignore delete directory inside assets
 assets/delete/
+
+# Ignore favicon_io (1).zip directory inside assets
+assets/favicon_io (1).zip
