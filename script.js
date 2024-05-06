@@ -6,6 +6,9 @@ function locomotiveAnimation() {
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("#main"),
 		smooth: true,
+		smartphone: {
+			smooth: true,
+		},
 	});
 	// each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
 
@@ -30,6 +33,18 @@ function locomotiveAnimation() {
 		pinType: document.querySelector("#main").style.transform
 			? "transform"
 			: "fixed",
+	});
+	const ourteamBg = document.querySelector(".ourteam-bg"); // Corrected from gsap.utils to document.querySelector
+	const inner = document.querySelector(".section-inner"); // Assuming you meant to select the section-inner class
+
+	ScrollTrigger.create({
+		scroller: "#main",
+		trigger: ourteamBg,
+		start: "top top",
+		end: "+=100%",
+		pin: inner,
+		pinSpacing: false,
+		pinType: "transform",
 	});
 
 	// each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
@@ -113,126 +128,151 @@ function loadingAnimation() {
 function cursorAnimation() {
 	let videoContainer = document.querySelector(".video-container");
 	let video = document.querySelector(".video-container video");
-	Shery.mouseFollower({
-		//Parameters are optional.
-		skew: true,
-		ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-		duration: 1,
-	});
-	Shery.makeMagnet("nav img, .navitems a ");
 
-	videoContainer.addEventListener("mouseenter", function () {
-		videoContainer.addEventListener("mousemove", function (dets) {
+	// Check if the device is in desktop mode based on viewport width
+	if (window.innerWidth >= 1024) {
+		Shery.mouseFollower({
+			//Parameters are optional.
+			skew: true,
+			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+			duration: 1,
+		});
+		Shery.makeMagnet(".logo, .navitems a ", {
+			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+			duration: 1,
+		});
+
+		videoContainer.addEventListener("mouseenter", function () {
+			videoContainer.addEventListener("mousemove", function (dets) {
+				gsap.to(".mousefollower", {
+					opacity: 0,
+				});
+				gsap.to("#video-cursor", {
+					left: dets.x - 500,
+					top: dets.y - 200,
+				});
+			});
+		});
+		videoContainer.addEventListener("mouseleave", function () {
 			gsap.to(".mousefollower", {
-				opacity: 0,
+				opacity: 1,
 			});
 			gsap.to("#video-cursor", {
-				left: dets.x - 500,
-				top: dets.y - 200,
+				left: "80%",
+				top: "-10%",
 			});
 		});
-	});
-	videoContainer.addEventListener("mouseleave", function () {
-		gsap.to(".mousefollower", {
-			opacity: 1,
-		});
-		gsap.to("#video-cursor", {
-			left: "80%",
-			top: "-10%",
-		});
-	});
 
-	videoContainer.addEventListener("click", function () {
-		// video.play();
-		// video.toggle();
-		if (video.paused) {
-			video.play();
-			video.style.opacity = 1;
-			document.querySelector(
-				"#video-cursor"
-			).innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff; font-size: 2vw"></i>`;
-			gsap.to("#video-cursor", {
-				scale: 0.8,
-			});
-		} else {
-			video.pause();
-			video.style.opacity = 1;
-			document.querySelector("#video-cursor").innerHTML = `<i
-			class="fa-solid fa-play play-icon"
-			style="color: #ffffff; font-size: 2vw"
-		></i>`;
-			gsap.to("#video-cursor", {
-				scale: 1,
-			});
-		}
-	});
+		videoContainer.addEventListener("click", function () {
+			if (video.paused) {
+				video.play();
+				video.style.opacity = 1;
+				document.querySelector(
+					"#video-cursor"
+				).innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff; font-size: 2vw"></i>`;
+				gsap.to("#video-cursor", {
+					scale: 0.8,
+				});
+			} else {
+				video.pause();
+				video.style.opacity = 1;
+				document.querySelector("#video-cursor").innerHTML = `<i
+                    class="fa-solid fa-play play-icon"
+                    style="color: #ffffff; font-size: 2vw"
+                ></i>`;
+				gsap.to("#video-cursor", {
+					scale: 1,
+				});
+			}
+		});
+	} else {
+		// For mobile devices, add touch event listeners
+		videoContainer.addEventListener("touchstart", function () {
+			if (video.paused) {
+				video.play();
+				video.style.opacity = 1;
+				document.querySelector("#video-cursor").style.opacity = 0;
+			} else {
+				video.pause();
+				video.style.opacity = 1;
+				document.querySelector("#video-cursor").style.opacity = 1;
+				document.querySelector("#video-cursor").innerHTML = `<i
+                    class="fa-solid fa-play play-icon"
+                    style="color: #ffffff; font-size: 2vw"
+                ></i>`;
+				gsap.to("#video-cursor", {
+					scale: 1,
+				});
+			}
+		});
+	}
 }
 
 function gooeyImg() {
-	Shery.imageEffect(".image-container", {
-		style: 6,
-		gooey: true,
-		// debug: true,
-		config: {
-			noiseDetail: { value: 7.44, range: [0, 100] },
-			distortionAmount: { value: 2.52, range: [0, 10] },
-			scale: { value: 0, range: [0, 100] },
-			speed: { value: 0.68, range: [0, 1] },
-			zindex: { value: -9996999, range: [-9999999, 9999999] },
-			aspect: { value: 0.7856955004925682 },
-			ignoreShapeAspect: { value: true },
-			shapePosition: { value: { x: 0, y: 0 } },
-			shapeScale: { value: { x: 0.5, y: 0.5 } },
-			shapeEdgeSoftness: { value: 0, range: [0, 0.5] },
-			shapeRadius: { value: 0, range: [0, 2] },
-			currentScroll: { value: 0 },
-			scrollLerp: { value: 0.07 },
-			gooey: { value: true },
-			infiniteGooey: { value: true },
-			growSize: { value: 4, range: [1, 15] },
-			durationOut: { value: 1, range: [0.1, 5] },
-			durationIn: { value: 1.5, range: [0.1, 5] },
-			displaceAmount: { value: 0.5 },
-			masker: { value: true },
-			maskVal: { value: 1, range: [1, 5] },
-			scrollType: { value: 0 },
-			geoVertex: { range: [1, 64], value: 1 },
-			noEffectGooey: { value: true },
-			onMouse: { value: 1 },
-			noise_speed: { value: 0.2, range: [0, 10] },
-			metaball: { value: 0.66, range: [0, 2] },
-			discard_threshold: { value: 0.5, range: [0, 1] },
-			antialias_threshold: { value: 0, range: [0, 0.1] },
-			noise_height: { value: 0.2, range: [0, 2] },
-			noise_scale: { value: 16.79, range: [0, 100] },
-			a: { value: 0.46, range: [0, 30] },
-			b: { value: 0.75, range: [-1, 1] },
-		},
-	});
+	let bgImg = document.querySelectorAll(".bg-img");
+	if (window.innerWidth >= 1024) {
+		Shery.imageEffect(".image-container", {
+			style: 5,
+			gooey: true,
+			// debug: true,
+			config: {
+				noiseDetail: { value: 7.44, range: [0, 100] },
+				distortionAmount: { value: 2.52, range: [0, 10] },
+				scale: { value: 0, range: [0, 100] },
+				speed: { value: 0.68, range: [0, 1] },
+				zindex: { value: -9996999, range: [-9999999, 9999999] },
+				aspect: { value: 0.7856955004925682 },
+				ignoreShapeAspect: { value: true },
+				shapePosition: { value: { x: 0, y: 0 } },
+				shapeScale: { value: { x: 0.5, y: 0.5 } },
+				shapeEdgeSoftness: { value: 0, range: [0, 0.5] },
+				shapeRadius: { value: 0, range: [0, 2] },
+				currentScroll: { value: 0 },
+				scrollLerp: { value: 0.07 },
+				gooey: { value: true },
+				infiniteGooey: { value: true },
+				growSize: { value: 4, range: [1, 15] },
+				durationOut: { value: 1, range: [0.1, 5] },
+				durationIn: { value: 1.5, range: [0.1, 5] },
+				displaceAmount: { value: 0.5 },
+				masker: { value: true },
+				maskVal: { value: 1, range: [1, 5] },
+				scrollType: { value: 0 },
+				geoVertex: { range: [1, 64], value: 1 },
+				noEffectGooey: { value: true },
+				onMouse: { value: 1 },
+				noise_speed: { value: 0.2, range: [0, 10] },
+				metaball: { value: 0.66, range: [0, 2] },
+				discard_threshold: { value: 0.5, range: [0, 1] },
+				antialias_threshold: { value: 0, range: [0, 0.1] },
+				noise_height: { value: 0.2, range: [0, 2] },
+				noise_scale: { value: 16.79, range: [0, 100] },
+				a: { value: 0.46, range: [0, 30] },
+				b: { value: 0.75, range: [-1, 1] },
+			},
+		});
+	} else {
+		bgImg.style.display = "none";
+		document.querySelector(".holi-bg").style.display = "none !important";
+	}
 }
 
-cursorAnimation();
+// Get the span element with the current-time class
+const currentTime = document.querySelector(".current-time");
+
+// Set up a function to update the time every second
+setInterval(() => {
+	// Get the current time using the Date object
+	const now = new Date();
+	const hours = now.getHours().toString().padStart(2, "0");
+	const minutes = now.getMinutes().toString().padStart(2, "0");
+	const seconds = now.getSeconds().toString().padStart(2, "0");
+
+	// Update the span element with the current time
+	currentTime.innerHTML = `${hours}:${minutes}<span class="timestamp-seconds">${seconds}</span>`;
+}, 1000);
+
 locomotiveAnimation();
+cursorAnimation();
 loadingAnimation();
 gooeyImg();
-
-document.addEventListener("mousemove", function (dets) {
-	gsap.to("#work-gif", {
-		x: dets.x,
-		y: dets.y,
-	});
-});
-document
-	.querySelector(".hover-heading")
-	.addEventListener("pointerenter", function () {
-		gsap.to("#work-gif", {
-			opacity: 1,
-		});
-	});
-document
-	.querySelector(".hover-heading")
-	.addEventListener("pointerleave", function () {
-		gsap.to("#work-gif", {
-			opacity: 0,
-		});
-	});
