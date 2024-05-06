@@ -253,26 +253,26 @@ function gooeyImg() {
 		});
 	} else {
 		bgImg.style.display = "none";
-		document.querySelector(".holi-bg").style.display = "none !important";
 	}
 }
 
-// Get the span element with the current-time class
-const currentTime = document.querySelector(".current-time");
-
-// Set up a function to update the time every second
-setInterval(() => {
-	// Get the current time using the Date object
-	const now = new Date();
-	const hours = now.getHours().toString().padStart(2, "0");
-	const minutes = now.getMinutes().toString().padStart(2, "0");
-	const seconds = now.getSeconds().toString().padStart(2, "0");
-
-	// Update the span element with the current time
+// Function to get the current time
+function getCurrentTime() {
+	let now = new Date();
+	let hours = now.getHours().toString().padStart(2, "0");
+	let minutes = now.getMinutes().toString().padStart(2, "0");
+	let seconds = now.getSeconds().toString().padStart(2, "0");
+	let currentTime = document.querySelector(".current-time");
 	currentTime.innerHTML = `${hours}:${minutes}<span class="timestamp-seconds">${seconds}</span>`;
-}, 1000);
+}
+
+// Check if the current page is the contact page
+if (window.location.pathname === "/contact.html") {
+	// If it is, run the date function every second
+	setInterval(getCurrentTime, 1000);
+}
 
 locomotiveAnimation();
+gooeyImg();
 cursorAnimation();
 loadingAnimation();
-gooeyImg();
