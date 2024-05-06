@@ -273,6 +273,6 @@ if (window.location.pathname === "/contact.html") {
 }
 
 locomotiveAnimation();
+loadingAnimation();
 gooeyImg();
 cursorAnimation();
-loadingAnimation();
