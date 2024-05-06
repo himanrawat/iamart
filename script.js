@@ -272,6 +272,8 @@ if (window.location.pathname === "/contact.html") {
 	setInterval(getCurrentTime, 1000);
 }
 
+window.onload = getTime;
+
 locomotiveAnimation();
 loadingAnimation();
 gooeyImg();
