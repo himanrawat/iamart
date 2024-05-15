@@ -129,130 +129,85 @@ function cursorAnimation() {
 	let videoContainer = document.querySelector(".video-container");
 	let video = document.querySelector(".video-container video");
 
-	// Check if the device is in desktop mode based on viewport width
-	if (window.innerWidth >= 1024) {
-		Shery.mouseFollower({
-			//Parameters are optional.
-			skew: true,
-			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-			duration: 1,
-		});
-		Shery.makeMagnet(".logo, .navitems a ", {
-			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-			duration: 1,
-		});
+	if (videoContainer) {
+		// Your cursor animation code here
+		// Check if the device is in desktop mode based on viewport width
+		if (window.innerWidth >= 1024) {
+			Shery.mouseFollower({
+				//Parameters are optional.
+				skew: true,
+				ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+				duration: 1,
+			});
+			Shery.makeMagnet(".logo, .navitems a ", {
+				ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+				duration: 1,
+			});
 
-		videoContainer.addEventListener("mouseenter", function () {
-			videoContainer.addEventListener("mousemove", function (dets) {
+			videoContainer.addEventListener("mouseenter", function () {
+				videoContainer.addEventListener("mousemove", function (dets) {
+					gsap.to(".mousefollower", {
+						opacity: 0,
+					});
+					gsap.to("#video-cursor", {
+						left: dets.x - 500,
+						top: dets.y - 200,
+					});
+				});
+			});
+			videoContainer.addEventListener("mouseleave", function () {
 				gsap.to(".mousefollower", {
-					opacity: 0,
+					opacity: 1,
 				});
 				gsap.to("#video-cursor", {
-					left: dets.x - 500,
-					top: dets.y - 200,
+					left: "80%",
+					top: "-10%",
 				});
 			});
-		});
-		videoContainer.addEventListener("mouseleave", function () {
-			gsap.to(".mousefollower", {
-				opacity: 1,
-			});
-			gsap.to("#video-cursor", {
-				left: "80%",
-				top: "-10%",
-			});
-		});
 
-		videoContainer.addEventListener("click", function () {
-			if (video.paused) {
-				video.play();
-				video.style.opacity = 1;
-				document.querySelector(
-					"#video-cursor"
-				).innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff; font-size: 2vw"></i>`;
-				gsap.to("#video-cursor", {
-					scale: 0.8,
-				});
-			} else {
-				video.pause();
-				video.style.opacity = 1;
-				document.querySelector("#video-cursor").innerHTML = `<i
+			videoContainer.addEventListener("click", function () {
+				if (video.paused) {
+					video.play();
+					video.style.opacity = 1;
+					document.querySelector(
+						"#video-cursor"
+					).innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff; font-size: 2vw"></i>`;
+					gsap.to("#video-cursor", {
+						scale: 0.8,
+					});
+				} else {
+					video.pause();
+					video.style.opacity = 1;
+					document.querySelector("#video-cursor").innerHTML = `<i
                     class="fa-solid fa-play play-icon"
                     style="color: #ffffff; font-size: 2vw"
                 ></i>`;
-				gsap.to("#video-cursor", {
-					scale: 1,
-				});
-			}
-		});
-	} else {
-		// For mobile devices, add touch event listeners
-		videoContainer.addEventListener("touchstart", function () {
-			if (video.paused) {
-				video.play();
-				video.style.opacity = 1;
-				document.querySelector("#video-cursor").style.opacity = 0;
-			} else {
-				video.pause();
-				video.style.opacity = 1;
-				document.querySelector("#video-cursor").style.opacity = 1;
-				document.querySelector("#video-cursor").innerHTML = `<i
+					gsap.to("#video-cursor", {
+						scale: 1,
+					});
+				}
+			});
+		} else {
+			// For mobile devices, add touch event listeners
+			videoContainer.addEventListener("touchstart", function () {
+				if (video.paused) {
+					video.play();
+					video.style.opacity = 1;
+					document.querySelector("#video-cursor").style.opacity = 0;
+				} else {
+					video.pause();
+					video.style.opacity = 1;
+					document.querySelector("#video-cursor").style.opacity = 1;
+					document.querySelector("#video-cursor").innerHTML = `<i
                     class="fa-solid fa-play play-icon"
                     style="color: #ffffff; font-size: 2vw"
                 ></i>`;
-				gsap.to("#video-cursor", {
-					scale: 1,
-				});
-			}
-		});
-	}
-}
-
-function gooeyImg() {
-	let bgImg = document.querySelectorAll(".bg-img");
-	if (window.innerWidth >= 1024) {
-		Shery.imageEffect(".image-container", {
-			style: 5,
-			gooey: true,
-			// debug: true,
-			config: {
-				noiseDetail: { value: 7.44, range: [0, 100] },
-				distortionAmount: { value: 2.52, range: [0, 10] },
-				scale: { value: 0, range: [0, 100] },
-				speed: { value: 0.68, range: [0, 1] },
-				zindex: { value: -9996999, range: [-9999999, 9999999] },
-				aspect: { value: 0.7856955004925682 },
-				ignoreShapeAspect: { value: true },
-				shapePosition: { value: { x: 0, y: 0 } },
-				shapeScale: { value: { x: 0.5, y: 0.5 } },
-				shapeEdgeSoftness: { value: 0, range: [0, 0.5] },
-				shapeRadius: { value: 0, range: [0, 2] },
-				currentScroll: { value: 0 },
-				scrollLerp: { value: 0.07 },
-				gooey: { value: true },
-				infiniteGooey: { value: true },
-				growSize: { value: 4, range: [1, 15] },
-				durationOut: { value: 1, range: [0.1, 5] },
-				durationIn: { value: 1.5, range: [0.1, 5] },
-				displaceAmount: { value: 0.5 },
-				masker: { value: true },
-				maskVal: { value: 1, range: [1, 5] },
-				scrollType: { value: 0 },
-				geoVertex: { range: [1, 64], value: 1 },
-				noEffectGooey: { value: true },
-				onMouse: { value: 1 },
-				noise_speed: { value: 0.2, range: [0, 10] },
-				metaball: { value: 0.66, range: [0, 2] },
-				discard_threshold: { value: 0.5, range: [0, 1] },
-				antialias_threshold: { value: 0, range: [0, 0.1] },
-				noise_height: { value: 0.2, range: [0, 2] },
-				noise_scale: { value: 16.79, range: [0, 100] },
-				a: { value: 0.46, range: [0, 30] },
-				b: { value: 0.75, range: [-1, 1] },
-			},
-		});
-	} else {
-		bgImg.style.display = "none";
+					gsap.to("#video-cursor", {
+						scale: 1,
+					});
+				}
+			});
+		}
 	}
 }
 
@@ -276,5 +231,5 @@ if (window.location.pathname === "/contact.html") {
 
 locomotiveAnimation();
 loadingAnimation();
-gooeyImg();
+// gooeyImg();
 cursorAnimation();
