@@ -487,8 +487,8 @@ nav li:hover a span:before{
 }
 
 .content p {
-    width: 60%;
     font-size: 2vw;
+    margin-bottom: 4vw;
 }
 
 
