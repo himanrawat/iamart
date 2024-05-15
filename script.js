@@ -211,20 +211,37 @@ function cursorAnimation() {
 	}
 }
 
-// Function to get the current time
-function getCurrentTime() {
-	let now = new Date();
-	let hours = now.getHours().toString().padStart(2, "0");
-	let minutes = now.getMinutes().toString().padStart(2, "0");
-	let seconds = now.getSeconds().toString().padStart(2, "0");
-	let currentTime = document.querySelector(".current-time");
-	currentTime.innerHTML = `${hours}:${minutes}<span class="timestamp-seconds">${seconds}</span>`;
+// Fetch current time from WorldTimeAPI and update time display
+function updateTimeFromAPI() {
+	fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
+		.then((response) => response.json())
+		.then((data) => {
+			const utcTimeString = data.utc_datetime;
+			const utcTime = new Date(utcTimeString);
+			const istOptions = {
+				timeZone: "Asia/Kolkata", // Set the timezone to IST
+				hour12: false, // Use 24-hour format
+				hour: "numeric", // Display hour
+				minute: "numeric", // Display minute
+				second: "numeric", // Display second
+			};
+			const istTimeString = utcTime.toLocaleString("en-IN", istOptions);
+			const [hours, minutes, seconds] = istTimeString.split(":");
+			const formattedTime = `${hours}:${minutes} <span class="timestamp-seconds">${seconds}</span>`;
+			document.querySelector(".current-time").innerHTML = formattedTime;
+		})
+		.catch((error) => {
+			console.error("Error fetching time:", error);
+		});
 }
 
 // Check if the current page is the contact page
 if (window.location.pathname === "/contact.html") {
-	// If it is, run the date function every second
-	setInterval(getCurrentTime, 1000);
+	// Update the time every second
+	setInterval(updateTimeFromAPI, 1000);
+
+	// Initial call to display the time immediately
+	updateTimeFromAPI();
 }
 
 // window.onload = getTime;
