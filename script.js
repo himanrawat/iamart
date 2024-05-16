@@ -129,7 +129,6 @@ function cursorAnimation() {
 	let videoContainer = document.querySelector(".video-container");
 	let video = document.querySelector(".video-container video");
 
-	// Your cursor animation code here
 	// Check if the device is in desktop mode based on viewport width
 	if (window.innerWidth >= 1024) {
 		Shery.mouseFollower({
@@ -142,109 +141,91 @@ function cursorAnimation() {
 			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
 			duration: 1,
 		});
-		if (videoContainer) {
-			videoContainer.addEventListener("mouseenter", function () {
-				videoContainer.addEventListener("mousemove", function (dets) {
-					gsap.to(".mousefollower", {
-						opacity: 0,
-					});
-					gsap.to("#video-cursor", {
-						left: dets.x - 500,
-						top: dets.y - 200,
-					});
-				});
-			});
-			videoContainer.addEventListener("mouseleave", function () {
+
+		videoContainer.addEventListener("mouseenter", function () {
+			videoContainer.addEventListener("mousemove", function (dets) {
 				gsap.to(".mousefollower", {
-					opacity: 1,
+					opacity: 0,
 				});
 				gsap.to("#video-cursor", {
-					left: "80%",
-					top: "-10%",
+					left: dets.x - 500,
+					top: dets.y - 200,
 				});
 			});
+		});
+		videoContainer.addEventListener("mouseleave", function () {
+			gsap.to(".mousefollower", {
+				opacity: 1,
+			});
+			gsap.to("#video-cursor", {
+				left: "80%",
+				top: "-10%",
+			});
+		});
 
-			videoContainer.addEventListener("click", function () {
-				if (video.paused) {
-					video.play();
-					video.style.opacity = 1;
-					document.querySelector(
-						"#video-cursor"
-					).innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff; font-size: 2vw"></i>`;
-					gsap.to("#video-cursor", {
-						scale: 0.8,
-					});
-				} else {
-					video.pause();
-					video.style.opacity = 1;
-					document.querySelector("#video-cursor").innerHTML = `<i
-						class="fa-solid fa-play play-icon"
-						style="color: #ffffff; font-size: 2vw"
-					></i>`;
-					gsap.to("#video-cursor", {
-						scale: 1,
-					});
-				}
-			});
-		} else {
-			// For mobile devices, add touch event listeners
-			videoContainer.addEventListener("touchstart", function () {
-				if (video.paused) {
-					video.play();
-					video.style.opacity = 1;
-					document.querySelector("#video-cursor").style.opacity = 0;
-				} else {
-					video.pause();
-					video.style.opacity = 1;
-					document.querySelector("#video-cursor").style.opacity = 1;
-					document.querySelector("#video-cursor").innerHTML = `<i
-						class="fa-solid fa-play play-icon"
-						style="color: #ffffff; font-size: 2vw"
-					></i>`;
-					gsap.to("#video-cursor", {
-						scale: 1,
-					});
-				}
-			});
-		}
+		videoContainer.addEventListener("click", function () {
+			if (video.paused) {
+				video.play();
+				video.style.opacity = 1;
+				document.querySelector(
+					"#video-cursor"
+				).innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff; font-size: 2vw"></i>`;
+				gsap.to("#video-cursor", {
+					scale: 0.8,
+				});
+			} else {
+				video.pause();
+				video.style.opacity = 1;
+				document.querySelector("#video-cursor").innerHTML = `<i
+                    class="fa-solid fa-play play-icon"
+                    style="color: #ffffff; font-size: 2vw"
+                ></i>`;
+				gsap.to("#video-cursor", {
+					scale: 1,
+				});
+			}
+		});
+	} else {
+		// For mobile devices, add touch event listeners
+		videoContainer.addEventListener("touchstart", function () {
+			if (video.paused) {
+				video.play();
+				video.style.opacity = 1;
+				document.querySelector("#video-cursor").style.opacity = 0;
+			} else {
+				video.pause();
+				video.style.opacity = 1;
+				document.querySelector("#video-cursor").style.opacity = 1;
+				document.querySelector("#video-cursor").innerHTML = `<i
+                    class="fa-solid fa-play play-icon"
+                    style="color: #ffffff; font-size: 2vw"
+                ></i>`;
+				gsap.to("#video-cursor", {
+					scale: 1,
+				});
+			}
+		});
 	}
 }
 
-// Fetch current time from WorldTimeAPI and update time display
-function updateTimeFromAPI() {
-	fetch("http://worldtimeapi.org/api/timezone/Asia/Kolkata")
-		.then((response) => response.json())
-		.then((data) => {
-			const utcTimeString = data.utc_datetime;
-			const utcTime = new Date(utcTimeString);
-			const istOptions = {
-				timeZone: "Asia/Kolkata", // Set the timezone to IST
-				hour12: false, // Use 24-hour format
-				hour: "numeric", // Display hour
-				minute: "numeric", // Display minute
-				second: "numeric", // Display second
-			};
-			const istTimeString = utcTime.toLocaleString("en-IN", istOptions);
-			const [hours, minutes, seconds] = istTimeString.split(":");
-			const formattedTime = `${hours}:${minutes} <span class="timestamp-seconds">${seconds}</span>`;
-			document.querySelector(".current-time").innerHTML = formattedTime;
-		})
-		.catch((error) => {
-			console.error("Error fetching time:", error);
-		});
-}
+// // Function to get the current time
+// function getCurrentTime() {
+// 	let now = new Date();
+// 	let hours = now.getHours().toString().padStart(2, "0");
+// 	let minutes = now.getMinutes().toString().padStart(2, "0");
+// 	let seconds = now.getSeconds().toString().padStart(2, "0");
+// 	let currentTime = document.querySelector(".current-time");
+// 	currentTime.innerHTML = `${hours}:${minutes}<span class="timestamp-seconds">${seconds}</span>`;
+// }
 
-// Check if the current page is the contact page
-if (window.location.pathname === "/index.html") {
-	loadingAnimation();
-}
+// // Check if the current page is the contact page
+// if (window.location.pathname === "/contact.html") {
+// 	// If it is, run the date function every second
+// 	setInterval(getCurrentTime, 1000);
+// }
 
-if (window.location.pathname === "/contact.html") {
-	// Update the time every second
-	setInterval(updateTimeFromAPI, 1000);
+// window.onload = getTime;
 
-	// Initial call to display the time immediately
-}
-updateTimeFromAPI();
 locomotiveAnimation();
+loadingAnimation();
 cursorAnimation();
