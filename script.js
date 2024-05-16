@@ -129,21 +129,20 @@ function cursorAnimation() {
 	let videoContainer = document.querySelector(".video-container");
 	let video = document.querySelector(".video-container video");
 
-	if (videoContainer) {
-		// Your cursor animation code here
-		// Check if the device is in desktop mode based on viewport width
-		if (window.innerWidth >= 1024) {
-			Shery.mouseFollower({
-				//Parameters are optional.
-				skew: true,
-				ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-				duration: 1,
-			});
-			Shery.makeMagnet(".logo, .navitems a ", {
-				ease: "cubic-bezier(0.23, 1, 0.320, 1)",
-				duration: 1,
-			});
-
+	// Your cursor animation code here
+	// Check if the device is in desktop mode based on viewport width
+	if (window.innerWidth >= 1024) {
+		Shery.mouseFollower({
+			//Parameters are optional.
+			skew: true,
+			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+			duration: 1,
+		});
+		Shery.makeMagnet(".logo, .navitems a ", {
+			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+			duration: 1,
+		});
+		if (videoContainer) {
 			videoContainer.addEventListener("mouseenter", function () {
 				videoContainer.addEventListener("mousemove", function (dets) {
 					gsap.to(".mousefollower", {
@@ -179,9 +178,9 @@ function cursorAnimation() {
 					video.pause();
 					video.style.opacity = 1;
 					document.querySelector("#video-cursor").innerHTML = `<i
-                    class="fa-solid fa-play play-icon"
-                    style="color: #ffffff; font-size: 2vw"
-                ></i>`;
+						class="fa-solid fa-play play-icon"
+						style="color: #ffffff; font-size: 2vw"
+					></i>`;
 					gsap.to("#video-cursor", {
 						scale: 1,
 					});
@@ -199,9 +198,9 @@ function cursorAnimation() {
 					video.style.opacity = 1;
 					document.querySelector("#video-cursor").style.opacity = 1;
 					document.querySelector("#video-cursor").innerHTML = `<i
-                    class="fa-solid fa-play play-icon"
-                    style="color: #ffffff; font-size: 2vw"
-                ></i>`;
+						class="fa-solid fa-play play-icon"
+						style="color: #ffffff; font-size: 2vw"
+					></i>`;
 					gsap.to("#video-cursor", {
 						scale: 1,
 					});
@@ -236,17 +235,16 @@ function updateTimeFromAPI() {
 }
 
 // Check if the current page is the contact page
+if (window.location.pathname === "/index.html") {
+	loadingAnimation();
+}
+
 if (window.location.pathname === "/contact.html") {
 	// Update the time every second
 	setInterval(updateTimeFromAPI, 1000);
 
 	// Initial call to display the time immediately
-	updateTimeFromAPI();
 }
-
-// window.onload = getTime;
-
+updateTimeFromAPI();
 locomotiveAnimation();
-loadingAnimation();
-// gooeyImg();
 cursorAnimation();

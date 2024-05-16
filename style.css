@@ -69,7 +69,7 @@ button {
 
 .loader-content {
     width: fit-content;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .percentage {
@@ -326,7 +326,7 @@ nav li:hover a span:before{
         width: 14vw;
     }
 }
-@media screen and (max-width:767px) {
+@media screen and (max-width: 991.98px)  {
     .header-row{
         padding: 30px;
     }
@@ -345,6 +345,7 @@ nav li:hover a span:before{
         display: none;
     }
 }
+
 
 .title {
     padding: 8vw 5.3vw;
@@ -506,6 +507,14 @@ nav li:hover a span:before{
     margin: 8vw 0;
 }
 
+.last-project {
+    display: flex ;
+    overflow: hidden;
+    justify-content:end ;
+    margin: 8vw 0;
+    gap: 6vw;
+}
+
 .projects {
     display: flex ;
     overflow: hidden;
@@ -603,6 +612,9 @@ nav li:hover a span:before{
 
 .circle-row-2 svg {
     rotate: -45deg;
+}
+.circle-row-3 svg {
+    rotate: 90deg;
 }
 
 .svg-content-wrapper {
@@ -818,7 +830,7 @@ transition: all ease-in-out 0.3s;
     width: 1.5vw;
 }
 
-.btn-round {
+.btn-round{
     width: 14vw;
     height: 14vw;
     border-radius: 50%;
@@ -829,7 +841,18 @@ transition: all ease-in-out 0.3s;
     font-size: 2vw;
 }
 
-.btn-round:hover {
+.btn-round-custom{
+    width: 20vw;
+    height: 20vw;
+    border-radius: 50%;
+    background: #FFA63D;
+    border: 0;
+    transition: all  0.3s ease;
+    color: #fff;
+    font-size: 2vw;
+}
+
+.btn-round:hover , .btn-round-custom:hover {
     scale: 0.8;
 }
 
@@ -933,7 +956,8 @@ transition: all ease-in-out 0.3s;
         padding-right: 5vw ;
     }
     .about-team p {
-        font-size: 2vw;
+        font-size: 14px;
+        line-height: inherit;
         width:auto
     }
 
@@ -946,8 +970,16 @@ transition: all ease-in-out 0.3s;
 
     .underline_weworkwith {
         width: 100%;
+        max-width: 80%;
+        margin: 0 10vw;
         height: 2px;
         background-color: #fff;
+    }
+
+    .weworkwith {
+        width: 100%;
+        max-width: 80%;
+        margin: 0 10vw;
     }
 
     .footer {
@@ -1037,6 +1069,17 @@ transition: all ease-in-out 0.3s;
         font-family: "silk serif";
        display: flex;
     }
+
+    .btn-round-custom{
+        width: 40vw;
+        height: 40vw;
+        border-radius: 50%;
+        background: #FFA63D;
+        border: 0;
+        transition: all  0.3s ease;
+        color: #fff;
+        font-size: 2vw;
+    }
 }
 
 @media (max-width: 991.98px) {
@@ -1105,6 +1148,23 @@ transition: all ease-in-out 0.3s;
         transform: translate(-50%,-50%);
     }
 
+    .about-us {
+        flex-direction: column;
+    }
+
+    .project-lg-container, .project-sm-container {
+        /* height: ; */
+        width: 100%;
+        margin: 8vw 4vw;
+    }
+
+    .projects {
+        flex-wrap: wrap;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
     
  }
 
@@ -1200,4 +1260,74 @@ transition: all ease-in-out 0.3s;
 
 .iamart-card-wrapper img{
     width: 100%;
+}
+
+.prject-banner {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    padding-bottom: 8vw;
+}
+
+.prject-details-title {
+ width: 50vw;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ text-align: center;
+ line-height: 8vw;
+}
+
+.project-section-title h1 {
+    font-size: 8vw;
+    font-family: "silk serif";
+    -webkit-text-stroke: 1px #fff;
+    color: transparent;
+    font-weight: 100;
+    /* line-height: 14vw; */
+    
+}
+.project-section-title h2 {
+    font-size: 4vw;
+    
+}
+
+.project-section-title h4 {
+    font-size: 1.4vw;
+}
+
+.project-cover{
+    width: 5%;
+}
+
+.project-cover img {
+    /* width: 100%; */
+    height: 100%;
+    border-radius: 2vw;
+}
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4vw;
+    justify-content: space-between;
+}
+
+.img-container {
+    width: 20vw;
+    height: 20vw;
+}
+
+.photo-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: 0 2vw; */
+    margin: 2vw 0;
+    flex-direction: column;
+}
+
+.photo-group img {
+    width: 100%;
+    /* height: auto; */
 }
