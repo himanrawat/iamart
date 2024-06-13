@@ -4,17 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Iamart</title>
-		<!-- favicon -->
-		<link
-			rel="android-chrome"
-			sizes="192x192"
-			href="assets/favicon/android-chrome-192x192.png"
-		/>
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="assets/favicon/apple-touch-icon.png"
-		/>
 		<link
 			rel="icon"
 			type="image/png"
@@ -22,27 +11,17 @@
 			href="assets/favicon/favicon-32x32.png"
 		/>
 		<link
-			rel="icon"
-			type="image/png"
-			sizes="16x16"
-			href="assets/favicon/favicon-16x16.png"
-		/>
-		<!-- locomotive css  -->
-		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
 		/>
-		<!-- shery css  -->
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/gh/aayushchouhan24/sheryjs@main/dist/Shery.css"
 		/>
-		<!-- remixicon cdn  -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
 			rel="stylesheet"
 		/>
-		<!-- css file  -->
 		<link rel="stylesheet" href="style.css" />
 		<script
 			src="https://kit.fontawesome.com/29a0ad46c6.js"
@@ -51,7 +30,7 @@
 	</head>
 	<body>
 		<div id="loader">
-			<span class="loader-content">
+			<div class="loader-content">
 				<div class="percentage">
 					<div class="counter">
 						<p class="count">0</p>
@@ -64,7 +43,7 @@
 					<h1 class="animating-h1">is loading right</h1>
 					<h1 class="animate">now</h1>
 				</div>
-			</span>
+			</div>
 			<div class="loader-content-para">
 				<span>
 					<p>Please Wait</p>
@@ -73,7 +52,6 @@
 			</div>
 		</div>
 		<section id="main">
-			<!-- hero section starts here -->
 			<section id="hero">
 				<header>
 					<div class="header-row">
@@ -82,7 +60,7 @@
 						</a>
 						<div class="navitems">
 							<a href="about.html">Biography</a>
-							<a href="work.html">work</a>
+							<a href="work.html">Work</a>
 							<a href="contact.html">Contact</a>
 						</div>
 						<button class="menu-toggle" id="menuToggle">
@@ -99,7 +77,6 @@
 						</button>
 					</div>
 				</header>
-
 				<section class="fullpage-menu">
 					<div class="fullpage-menu-inner">
 						<div class="menu-bg"></div>
@@ -129,15 +106,12 @@
 					<div class="container">
 						<span class="page-no">01</span>
 						<div class="content gif-hover">
-							<!-- <div class="hover-heading"></div> -->
 							<h1>EMBRACE THE ARTISTRY:</h1>
 							<h1>WHERE EVERY MOMENT</h1>
 							<h1>IS A MASTERPIECE</h1>
-							<!-- <img src="assets/work.gif" alt="work" id="work-gif" /> -->
 						</div>
 					</div>
 				</div>
-
 				<div class="video-shoot">
 					<div class="video-container" data-scroll data-scroll-speed="-3">
 						<div id="video-cursor">
@@ -146,12 +120,15 @@
 								style="color: #ffffff; font-size: 2vw"
 							></i>
 						</div>
-						<video src="assets/droneShot.mp4" type="video/mp4" loop></video>
+						<video
+							src="assets/droneShot.mp4"
+							type="video/mp4"
+							loop
+							controls
+						></video>
 					</div>
 				</div>
 			</section>
-			<!-- hero section ends here  -->
-			<!-- project section starts here -->
 			<section class="section" id="project-section" data-scroll>
 				<div class="container">
 					<span class="page-no">02</span>
@@ -160,10 +137,8 @@
 						<div class="underline"></div>
 					</div>
 				</div>
-				<!-- Row 1 starts here -->
 				<div class="project-container" data-scroll data-scroll-speed="-1">
 					<div class="projects">
-						<!-- project 1 -->
 						<div class="project-sm-container">
 							<h4 class="project-title">Whispers of the Thar :</h4>
 							<h4 class="project-title">
@@ -184,9 +159,6 @@
 							</div>
 							<div class="divider"></div>
 						</div>
-
-						<!-- project 1 ends -->
-						<!-- project 2 -->
 						<div class="project-lg-container">
 							<h4 class="project-title">Braj Holi :</h4>
 							<h4 class="project-title">Colors of Tradition</h4>
@@ -206,8 +178,6 @@
 							</div>
 							<div class="divider"></div>
 						</div>
-						<!-- project 2 ends -->
-						<!-- svg arrow starts -->
 						<div class="svg-wrapper svg-icon">
 							<div class="svg-circle">
 								<svg viewBox="0 0 91 118" fill="none">
@@ -224,14 +194,10 @@
 								</div>
 							</div>
 						</div>
-						<!-- svg arrow ends -->
 					</div>
 				</div>
-				<!-- Row 1 ends here -->
-				<!-- Row 2 starts here -->
 				<div class="project-container" data-scroll data-scroll-speed="1">
 					<div class="projects">
-						<!-- svg arrow starts -->
 						<div class="svg-icon">
 							<div class="svg-circle circle-row-2">
 								<svg viewBox="0 0 91 118" fill="none">
@@ -245,8 +211,6 @@
 								</div>
 							</div>
 						</div>
-						<!-- svg arrow ends -->
-						<!-- project 1 -->
 						<div class="project-lg-container">
 							<h4 class="project-title">Jagar :</h4>
 							<h4 class="project-title">Mystical Rhythms of Devotion</h4>
@@ -266,9 +230,6 @@
 							</div>
 							<div class="divider"></div>
 						</div>
-
-						<!-- project 1 ends -->
-						<!-- project 2 -->
 						<div class="project-sm-container">
 							<h4 class="project-title">Udayan Care :</h4>
 							<h4 class="project-title">A Glimpse of Hope</h4>
@@ -288,13 +249,9 @@
 							</div>
 							<div class="divider"></div>
 						</div>
-						<!-- project 2 ends -->
 					</div>
 				</div>
-				<!-- Row 2 ends here -->
 			</section>
-			<!-- project section ends here -->
-			<!-- section3 starts here -->
 			<section class="section" data-scroll data-scroll-speed="-1">
 				<div class="container">
 					<span class="page-no">03</span>
@@ -337,7 +294,6 @@
 					<div class="weworkwith">We work with</div>
 				</span>
 			</section>
-
 			<div class="marquee" data-scroll>
 				<div class="line">
 					<h4>#Ngos - #<span>Aashion</span> - #Food - #<span>Tourism</span></h4>
@@ -376,8 +332,6 @@
 					</h4>
 				</div>
 			</div>
-			<!-- section 3 ends here -->
-			<!-- Footer starts here -->
 			<footer class="section" data-scroll data-scroll-speed="-1">
 				<div class="container">
 					<span class="page-no">04</span>
@@ -404,50 +358,36 @@
 						<div class="footer-section">
 							<img src="assets/iamart.png" alt="logo" />
 							<div class="social-icons">
-								<img src="assets/linkedin.svg" />
-								<img src="assets/instagram.svg" />
-								<img src="assets/fb.svg" />
+								<img src="assets/linkedin.svg" alt="social-icon" />
+								<img src="assets/instagram.svg" alt="social-icon" />
+								<img src="assets/fb.svg" alt="social-icon" />
 							</div>
 						</div>
-
 						<div class="footer-section">
 							<h6>Say Hi!</h6>
-							<a href="#">info@gmail.com</a>
+							<a href="#">info@iamart.in</a>
 						</div>
 					</div>
 					<div id="underline" class="underline"></div>
 					<div class="footer-underline"></div>
-					<p class="copyright">Websystem © 2024</p>
+					<p class="copyright">IAmArt © 2024</p>
 				</div>
 			</footer>
-			<!-- Footer ends here -->
 		</section>
-		<!-- locomotive js  -->
 		<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
-
-		<!-- gsap cdn  -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
 			integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		></script>
-
-		<!-- scrolltrigger cdn  -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
 			integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
 		></script>
-
-		<!-- Shery JS cdn  -->
-		<script
-			type="text/javascript"
-			src="https://cdn.jsdelivr.net/gh/aayushchouhan24/sheryjs@main/dist/Shery.js"
-		></script>
-
-		<!-- JavaScript file  -->
+		<script src="https://cdn.jsdelivr.net/gh/aayushchouhan24/sheryjs@main/dist/Shery.js"></script>
 		<script src="navbar.js"></script>
 		<script src="script.js"></script>
 	</body>

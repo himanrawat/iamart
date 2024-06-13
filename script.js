@@ -1,26 +1,20 @@
-function locomotiveAnimation() {
+document.addEventListener("DOMContentLoaded", () => {
 	gsap.registerPlugin(ScrollTrigger);
-
-	// Using Locomotive Scroll from Locomotive https://github.com/locomotivemtl/locomotive-scroll
 
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("#main"),
 		smooth: true,
-		smartphone: {
-			smooth: true,
-		},
+		smartphone: { smooth: true },
 	});
-	// each time Locomotive Scroll updates, tell ScrollTrigger to update too (sync positioning)
 
 	locoScroll.on("scroll", ScrollTrigger.update);
 
-	// tell ScrollTrigger to use these proxy methods for the "#main" element since Locomotive Scroll is hijacking things
 	ScrollTrigger.scrollerProxy("#main", {
 		scrollTop(value) {
 			return arguments.length
 				? locoScroll.scrollTo(value, 0, 0)
 				: locoScroll.scroll.instance.scroll.y;
-		}, // we don't have to define a scrollLeft because we're only scrolling vertically.
+		},
 		getBoundingClientRect() {
 			return {
 				top: 0,
@@ -29,83 +23,57 @@ function locomotiveAnimation() {
 				height: window.innerHeight,
 			};
 		},
-		// LocomotiveScroll handles things completely differently on mobile devices - it doesn't even transform the container at all! So to get the correct behavior and avoid jitters, we should pin things with position: fixed on mobile. We sense it by checking to see if there's a transform applied to the container (the LocomotiveScroll-controlled element).
 		pinType: document.querySelector("#main").style.transform
 			? "transform"
 			: "fixed",
 	});
-	const ourteamBg = document.querySelector(".ourteam-bg"); // Corrected from gsap.utils to document.querySelector
-	const inner = document.querySelector(".section-inner"); // Assuming you meant to select the section-inner class
 
 	ScrollTrigger.create({
 		scroller: "#main",
-		trigger: ourteamBg,
+		trigger: ".ourteam-bg",
 		start: "top top",
 		end: "+=100%",
-		pin: inner,
+		pin: ".section-inner",
 		pinSpacing: false,
 		pinType: "transform",
 	});
 
-	// each time the window updates, we should refresh ScrollTrigger and then update LocomotiveScroll.
 	ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
-
-	// after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
 	ScrollTrigger.refresh();
-}
 
-function loadingAnimation() {
 	let tl = gsap.timeline();
 
 	function loadingCounter() {
-		const timmer = document.querySelector(".count");
-		let count = 0; // Start count from 0
+		const timer = document.querySelector(".count");
+		let count = 0;
 
-		const intervalId = setInterval(function () {
+		const intervalId = setInterval(() => {
 			if (count < 100) {
-				timmer.innerHTML = `${count++}`;
+				timer.innerHTML = `${count++}`;
 			} else {
-				clearInterval(intervalId); // Stop the interval when count reaches 100
-				timmer.innerHTML = `${count}`;
-				// Check if the website has finished loading
+				clearInterval(intervalId);
+				timer.innerHTML = `${count}`;
 				if (document.readyState === "complete") {
-					// If the website has finished loading, hide the loader
-					tl.to("#loader", {
-						opacity: 0,
-						duration: 0.5,
-						onComplete: function () {
-							// Optionally, you can remove the loader from the DOM
-							document.getElementById("loader").style.display = "none";
-						},
-					});
-					tl.from(".content h1, .page-no", {
-						opacity: 0,
-						delay: 0.6,
-						y: 200,
-						stagger: 0.3,
-					});
+					hideLoader();
 				} else {
-					// If the website hasn't finished loading, wait for it to finish
-					window.addEventListener("load", function () {
-						// Hide the loader after the website finishes loading
-						tl.to("#loader", {
-							opacity: 0,
-							duration: 0.5,
-							onComplete: function () {
-								// Optionally, you can remove the loader from the DOM
-								document.getElementById("loader").style.display = "none";
-							},
-						});
-					});
-					tl.from(".content h1, .page-no", {
-						opacity: 0,
-						delay: 0.6,
-						y: 200,
-						stagger: 0.3,
-					});
+					window.addEventListener("load", hideLoader);
 				}
 			}
 		}, 35);
+	}
+
+	function hideLoader() {
+		tl.to("#loader", {
+			opacity: 0,
+			duration: 0.5,
+			onComplete: () =>
+				(document.getElementById("loader").style.display = "none"),
+		}).from(".content h1, .page-no", {
+			opacity: 0,
+			delay: 0.6,
+			y: 200,
+			stagger: 0.3,
+		});
 	}
 
 	tl.from(".loader-content h1, .loader-content-para", {
@@ -113,81 +81,55 @@ function loadingAnimation() {
 		opacity: 0,
 		duration: 1.3,
 		stagger: 0.3,
-	});
-	tl.to(".animate", {
-		animationName: "anime",
-		opacity: 1,
-	});
-	tl.from(".counter", {
-		opacity: 1,
-		stagger: 0.3,
-		onComplete: loadingCounter,
-	});
-}
+	})
+		.to(".animate", { animationName: "anime", opacity: 1 })
+		.from(".counter", { opacity: 1, stagger: 0.3, onComplete: loadingCounter });
 
-function cursorAnimation() {
-	let videoContainer = document.querySelector(".video-container");
-	let video = document.querySelector(".video-container video");
+	const videoContainer = document.querySelector(".video-container");
+	const video = document.querySelector(".video-container video");
 
-	// Check if the device is in desktop mode based on viewport width
 	if (window.innerWidth >= 1024) {
 		Shery.mouseFollower({
-			//Parameters are optional.
 			skew: true,
 			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
 			duration: 1,
 		});
-		Shery.makeMagnet(".logo, .navitems a ", {
+		Shery.makeMagnet(".logo, .navitems a", {
 			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
 			duration: 1,
 		});
 
-		videoContainer.addEventListener("mouseenter", function () {
-			videoContainer.addEventListener("mousemove", function (dets) {
-				gsap.to(".mousefollower", {
-					opacity: 0,
-				});
-				gsap.to("#video-cursor", {
-					left: dets.x - 500,
-					top: dets.y - 200,
-				});
-			});
-		});
-		videoContainer.addEventListener("mouseleave", function () {
-			gsap.to(".mousefollower", {
-				opacity: 1,
-			});
-			gsap.to("#video-cursor", {
-				left: "80%",
-				top: "-10%",
+		videoContainer.addEventListener("mouseenter", () => {
+			videoContainer.addEventListener("mousemove", (dets) => {
+				gsap.to(".mousefollower", { opacity: 0 });
+				gsap.to("#video-cursor", { left: dets.x - 500, top: dets.y - 200 });
 			});
 		});
 
-		videoContainer.addEventListener("click", function () {
+		videoContainer.addEventListener("mouseleave", () => {
+			gsap.to(".mousefollower", { opacity: 1 });
+			gsap.to("#video-cursor", { left: "80%", top: "-10%" });
+		});
+
+		videoContainer.addEventListener("click", () => {
 			if (video.paused) {
 				video.play();
 				video.style.opacity = 1;
 				document.querySelector(
 					"#video-cursor"
 				).innerHTML = `<i class="fa-solid fa-pause" style="color: #ffffff; font-size: 2vw"></i>`;
-				gsap.to("#video-cursor", {
-					scale: 0.8,
-				});
+				gsap.to("#video-cursor", { scale: 0.8 });
 			} else {
 				video.pause();
 				video.style.opacity = 1;
-				document.querySelector("#video-cursor").innerHTML = `<i
-                    class="fa-solid fa-play play-icon"
-                    style="color: #ffffff; font-size: 2vw"
-                ></i>`;
-				gsap.to("#video-cursor", {
-					scale: 1,
-				});
+				document.querySelector(
+					"#video-cursor"
+				).innerHTML = `<i class="fa-solid fa-play play-icon" style="color: #ffffff; font-size: 2vw"></i>`;
+				gsap.to("#video-cursor", { scale: 1 });
 			}
 		});
 	} else {
-		// For mobile devices, add touch event listeners
-		videoContainer.addEventListener("touchstart", function () {
+		videoContainer.addEventListener("touchstart", () => {
 			if (video.paused) {
 				video.play();
 				video.style.opacity = 1;
@@ -196,36 +138,11 @@ function cursorAnimation() {
 				video.pause();
 				video.style.opacity = 1;
 				document.querySelector("#video-cursor").style.opacity = 1;
-				document.querySelector("#video-cursor").innerHTML = `<i
-                    class="fa-solid fa-play play-icon"
-                    style="color: #ffffff; font-size: 2vw"
-                ></i>`;
-				gsap.to("#video-cursor", {
-					scale: 1,
-				});
+				document.querySelector(
+					"#video-cursor"
+				).innerHTML = `<i class="fa-solid fa-play play-icon" style="color: #ffffff; font-size: 2vw"></i>`;
+				gsap.to("#video-cursor", { scale: 1 });
 			}
 		});
 	}
-}
-
-// // Function to get the current time
-// function getCurrentTime() {
-// 	let now = new Date();
-// 	let hours = now.getHours().toString().padStart(2, "0");
-// 	let minutes = now.getMinutes().toString().padStart(2, "0");
-// 	let seconds = now.getSeconds().toString().padStart(2, "0");
-// 	let currentTime = document.querySelector(".current-time");
-// 	currentTime.innerHTML = `${hours}:${minutes}<span class="timestamp-seconds">${seconds}</span>`;
-// }
-
-// // Check if the current page is the contact page
-// if (window.location.pathname === "/contact.html") {
-// 	// If it is, run the date function every second
-// 	setInterval(getCurrentTime, 1000);
-// }
-
-// window.onload = getTime;
-
-locomotiveAnimation();
-loadingAnimation();
-cursorAnimation();
+});
