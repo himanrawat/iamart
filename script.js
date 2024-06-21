@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 	gsap.registerPlugin(ScrollTrigger);
 
-	// Initialize Locomotive Scroll
 	const locoScroll = new LocomotiveScroll({
 		el: document.querySelector("#main"),
 		smooth: true,
@@ -42,27 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	ScrollTrigger.addEventListener("refresh", () => locoScroll.update());
 	ScrollTrigger.refresh();
 
-	const loader = document.getElementById("loader");
-
-	function hideLoader() {
-		loader.style.opacity = "0";
-		setTimeout(() => {
-			loader.style.display = "none";
-		}, 500);
-	}
-
-	window.addEventListener("load", () => {
-		hideLoader();
-	});
-
-	setTimeout(() => {
-		if (document.readyState === "complete") {
-			hideLoader();
-		} else {
-			window.addEventListener("load", hideLoader);
-		}
-	}, 3000); // Simulated loading delay
-
 	let tl = gsap.timeline();
 
 	function loadingCounter() {
@@ -82,6 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			}
 		}, 35);
+	}
+
+	function hideLoader() {
+		tl.to("#loader", {
+			opacity: 0,
+			duration: 0.5,
+			onComplete: () =>
+				(document.getElementById("loader").style.display = "none"),
+		}).from(".content h1, .page-no", {
+			opacity: 0,
+			delay: 0.6,
+			y: 200,
+			stagger: 0.3,
+		});
 	}
 
 	tl.from(".loader-content h1, .loader-content-para", {
