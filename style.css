@@ -1264,19 +1264,19 @@ transition: all ease-in-out 0.3s;
     width: 100%;
 }
 
-.prject-banner {
+.project-banner {
     width: 100vw;
     height: 100vh;
     display: flex;
     padding-bottom: 8vw;
 }
 
-.prject-details-title {
+.project-details-title {
  width: 50vw;
  display: flex;
  align-items: center;
  justify-content: center;
- text-align: center;
+ padding: 0 8vw;
 }
 
 .project-section-title h1 {
@@ -1290,16 +1290,40 @@ transition: all ease-in-out 0.3s;
     
 }
 .project-section-title h2 {
-    font-size: 4vw; 
+    font-size: 2vw; 
 }
 
 .project-section-title h4 {
     font-size: 1.4vw;
 }
 
-.prject-details-desc {
+.project-details-desc {
     margin: 2vw 0;
-    padding: 0 8vw;
+}
+
+@media screen and (max-width: 991.98px) { 
+
+    .project-banner {
+        display: none;
+    }
+    
+    .project-section-title h1 {
+        font-size: 4rem;
+        line-height: 5rem;
+    }
+    .project-section-title h2 {
+        font-size: 0.6rem; 
+    }
+    
+    .project-section-title h4 {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+    }
+}
+@media (min-width: 991.98px) { 
+    .hero-section {
+        display: none;
+    }
 }
 
 .project-cover{
@@ -1308,9 +1332,43 @@ transition: all ease-in-out 0.3s;
 }
 
 .project-cover img {
-    /* width: 100%; */
     height: 100%;
     border-radius: 2vw;
+}
+
+.hero-section {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+    border-radius: 2vw;
+}
+
+.hero-section-details {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    padding: 6vw;
+    backdrop-filter: blur(1px) saturate(180%);
+    -webkit-backdrop-filter: blur(1px) saturate(180%);
+    background-color: rgba(21, 21, 21, 0.5);
+}
+
+.thar-hero {
+    background-image:url('./assets/thar/cover.jpg') ;
+}
+.holi-hero {
+    background-image:url('./assets/holi/cover.jpg') ;
+}
+.jagar-hero {
+    background-image:url('./assets/jagar/cover.jpg') ;
+}
+.kolkata-hero {
+    background-image:url('./assets/kolkata/cover.jpg') ;
+}
+.udayan-hero {
+    background-image:url('./assets/udayan/cover.jpg') ;
 }
 
 .gallery-container {
@@ -1397,6 +1455,7 @@ transition: all ease-in-out 0.3s;
     backdrop-filter: blur(4px) saturate(180%);
     -webkit-backdrop-filter: blur(16px) saturate(180%);
     background-color: rgba(21, 21, 21, 0.75);
+    overflow: hidden;
 }
 
 .slider-btn {
@@ -1408,6 +1467,9 @@ transition: all ease-in-out 0.3s;
     height: 100vh;
     width: 8vw;
     background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .prev-btn {
@@ -1421,4 +1483,28 @@ transition: all ease-in-out 0.3s;
 #slider-image {
     max-width: 80%;
     max-height: 80%;
+}
+
+@media (max-width: 991.98px) {
+    .slider-btn {
+        font-size: 3rem;
+        width: 12vw;
+    }
+
+    #slider-image {
+        max-width: 90%;
+        max-height: 90%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .slider-btn {
+        font-size: 2rem;
+        width: 15vw;
+    }
+
+    #slider-image {
+        max-width: 95%;
+        max-height: 95%;
+    }
 }

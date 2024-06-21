@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		img.classList.add("parallax-image");
 		img.setAttribute("loading", "lazy");
 		img.addEventListener("click", () => openImageSlider(index));
+		img.src = src;
 		columns[index % columns.length].appendChild(img);
 	});
 
