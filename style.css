@@ -203,7 +203,9 @@ header {
     z-index: 10;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 100%;  backdrop-filter: blur(4px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(21, 21, 21, 0.75);
 }
 
 .header-row {
@@ -218,7 +220,7 @@ header {
     border: none;
     cursor: pointer;
     outline: none;
-    text-decoration: none; /* if using anchor */
+    text-decoration: none; 
 }
 
 .hamburger path {
@@ -1275,7 +1277,6 @@ transition: all ease-in-out 0.3s;
  align-items: center;
  justify-content: center;
  text-align: center;
- line-height: 8vw;
 }
 
 .project-section-title h1 {
@@ -1284,20 +1285,26 @@ transition: all ease-in-out 0.3s;
     -webkit-text-stroke: 1px #fff;
     color: transparent;
     font-weight: 100;
-    /* line-height: 14vw; */
+    line-height: 7vw;
+    margin-bottom: 2vw;
     
 }
 .project-section-title h2 {
-    font-size: 4vw;
-    
+    font-size: 4vw; 
 }
 
 .project-section-title h4 {
     font-size: 1.4vw;
 }
 
+.prject-details-desc {
+    margin: 2vw 0;
+    padding: 0 8vw;
+}
+
 .project-cover{
     width: 5%;
+    height: 80vh;
 }
 
 .project-cover img {
@@ -1359,7 +1366,6 @@ transition: all ease-in-out 0.3s;
     }
 }
 
-
 .parallax-column {
     display: flex;
     flex-direction: column;
@@ -1387,15 +1393,21 @@ transition: all ease-in-out 0.3s;
     justify-content: center;
     z-index: 1000;
     display: none;
+    padding: 0;
+    backdrop-filter: blur(4px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(21, 21, 21, 0.75);
 }
 
 .slider-btn {
-    background: transparent;
     border: none;
     color: #fff;
-    font-size: 2rem;
+    font-size: 4rem;
     cursor: pointer;
     position: absolute;
+    height: 100vh;
+    width: 8vw;
+    background: none;
 }
 
 .prev-btn {

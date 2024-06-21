@@ -4,12 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Iamart</title>
-		<!-- favicon -->
-		<link
-			rel="android-chrome"
-			sizes="192x192"
-			href="assets/favicon/android-chrome-192x192.png"
-		/>
+		<!-- Favicon -->
 		<link
 			rel="apple-touch-icon"
 			sizes="180x180"
@@ -27,38 +22,67 @@
 			sizes="16x16"
 			href="assets/favicon/favicon-16x16.png"
 		/>
-		<!-- locomotive css  -->
+		<!-- Locomotive Scroll CSS -->
 		<link
 			rel="stylesheet"
-			href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
+			href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.css"
 		/>
-		<!-- shery css  -->
+		<!-- shery css -->
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/gh/aayushchouhan24/sheryjs@main/dist/Shery.css"
 		/>
-		<!-- remixicon cdn  -->
+		<!-- remixicon cdn -->
 		<link
 			href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
 			rel="stylesheet"
 		/>
-		<!-- css file  -->
+		<!-- Custom CSS -->
 		<link rel="stylesheet" href="style.css" />
+		<!-- FontAwesome -->
 		<script
 			src="https://kit.fontawesome.com/29a0ad46c6.js"
 			crossorigin="anonymous"
+			async
 		></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.dataset.images = JSON.stringify([
+					"assets/kolkata/cover.jpg",
+					"assets/kolkata/1.jpg",
+					"assets/kolkata/2.jpg",
+					"assets/kolkata/3.jpg",
+					"assets/kolkata/4.jpg",
+					"assets/kolkata/5.jpg",
+					"assets/kolkata/6.jpg",
+					"assets/kolkata/7.jpg",
+					"assets/kolkata/8.jpg",
+					"assets/kolkata/9.jpg",
+					"assets/kolkata/10.jpg",
+					"assets/kolkata/11.jpg",
+					"assets/kolkata/12.jpg",
+					"assets/kolkata/13.jpg",
+					"assets/kolkata/14.jpg",
+					"assets/kolkata/15.jpg",
+					"assets/kolkata/16.jpg",
+					"assets/kolkata/17.jpg",
+					"assets/kolkata/18.jpg",
+					"assets/kolkata/19.jpg",
+					"assets/kolkata/20.jpg",
+				]);
+			});
+		</script>
 	</head>
 	<body>
 		<div id="main">
 			<header>
 				<div class="header-row">
-					<a href="/index.html">
+					<a href="index.html">
 						<img src="assets/iamart.png" alt="logo" class="logo" />
 					</a>
 					<div class="navitems">
 						<a href="about.html">Biography</a>
-						<a href="work.html">work</a>
+						<a href="work.html">Work</a>
 						<a href="contact.html">Contact</a>
 					</div>
 					<button class="menu-toggle" id="menuToggle">
@@ -106,30 +130,45 @@
 					<span class="project-section-title">
 						<h1>Kolkata Chronicles</h1>
 						<h4>Exploring the Heartbeat of India's Cultural Capital</h4>
+						<p class="prject-details-desc">
+							A visual journey through the bustling streets, vibrant festivals,
+							and rich heritage of India's cultural capital. Kolkata, once known
+							as Calcutta, is a city steeped in history and alive with diverse
+							traditions.
+						</p>
 					</span>
 				</div>
 				<div class="project-cover">
 					<img src="assets/kolkata/Cover.jpg" alt="thar" />
 				</div>
 			</section>
-			<!-- Footer starts here -->
+
+			<div id="parallax-scroll" class="parallax-container">
+				<div class="parallax-grid">
+					<div class="parallax-column" id="parallax-column-1"></div>
+					<div class="parallax-column" id="parallax-column-2"></div>
+					<div class="parallax-column" id="parallax-column-3"></div>
+				</div>
+			</div>
+
+			<div id="image-slider" class="image-slider">
+				<button class="slider-btn prev-btn">
+					<i class="fa-solid fa-angle-left"></i>
+				</button>
+				<img id="slider-image" src="" alt="Slider Image" />
+				<button class="slider-btn next-btn">
+					<i class="fa-solid fa-angle-right"></i>
+				</button>
+			</div>
+
+			<!-- Footer -->
 			<footer class="section" data-scroll>
 				<div class="container">
 					<span class="page-no">04</span>
 					<span class="content">
 						<div class="lets-create">
-							<h2 class="lc-heading">let's Create</h2>
-							<svg
-								class="entry-title__arrow"
-								viewBox="0 0 118 91"
-								fill="none"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<path
-									d="M57.295 75.1963L56.5879 74.4892L55.8808 75.1963L56.5879 75.9034L57.295 75.1963ZM77.0457 55.4457L77.7528 56.1528L79.4599 54.4457L77.0457 54.4457L77.0457 55.4457ZM72.3742 90.2755L71.6671 90.9826L72.3742 91.6897L73.0813 90.9826L72.3742 90.2755ZM117.513 45.1371L118.22 45.8442L118.927 45.1371L118.22 44.4299L117.513 45.1371ZM102.433 30.0578L103.141 29.3507L102.433 28.6431L101.726 29.3512L102.433 30.0578ZM102.433 30.0585L101.726 30.7656L102.433 31.4732L103.14 30.7651L102.433 30.0585ZM72.3743 9.86531e-07L73.0814 -0.707106L72.3743 -1.41421L71.6672 -0.707106L72.3743 9.86531e-07ZM57.2951 15.0792L56.588 14.3721L55.8809 15.0792L56.588 15.7863L57.2951 15.0792ZM76.3363 34.1205L76.3363 35.1205L78.7506 35.1205L77.0434 33.4134L76.3363 34.1205ZM-4.50306e-05 34.1205L-4.50525e-05 33.1205L-1.00005 33.1205L-1.00005 34.1205L-4.50306e-05 34.1205ZM-4.45646e-05 55.4457L-1.00004 55.4457L-1.00004 56.4457L-4.45427e-05 56.4457L-4.45646e-05 55.4457ZM58.0021 75.9034L77.7528 56.1528L76.3385 54.7386L56.5879 74.4892L58.0021 75.9034ZM73.0813 89.5684L58.0021 74.4892L56.5879 75.9034L71.6671 90.9826L73.0813 89.5684ZM116.806 44.4299L71.6671 89.5684L73.0813 90.9826L118.22 45.8442L116.806 44.4299ZM101.726 30.765L116.806 45.8442L118.22 44.4299L103.141 29.3507L101.726 30.765ZM103.14 30.7651L103.141 30.7645L101.726 29.3512L101.725 29.3519L103.14 30.7651ZM103.14 29.3514L73.0814 -0.707106L71.6672 0.707108L101.726 30.7656L103.14 29.3514ZM71.6672 -0.707106L56.588 14.3721L58.0022 15.7863L73.0814 0.707108L71.6672 -0.707106ZM56.588 15.7863L75.6292 34.8276L77.0434 33.4134L58.0022 14.3721L56.588 15.7863ZM76.3363 33.1205L-4.50525e-05 33.1205L-4.50088e-05 35.1205L76.3363 35.1205L76.3363 33.1205ZM-1.00005 34.1205L-1.00004 55.4457L0.999955 55.4457L0.999955 34.1205L-1.00005 34.1205ZM-4.45427e-05 56.4457L77.0457 56.4457L77.0457 54.4457L-4.45864e-05 54.4457L-4.45427e-05 56.4457Z"
-									fill="currentColor"
-								></path>
-							</svg>
+							<h2 class="lc-heading">Let's Create</h2>
+							<img src="assets/arrow-right.svg" alt="arrow" />
 						</div>
 						<div class="underline"></div>
 					</span>
@@ -139,51 +178,47 @@
 						<div class="footer-section">
 							<img src="assets/iamart.png" alt="logo" />
 							<div class="social-icons">
-								<img src="assets/linkedin.svg" />
-								<img src="assets/instagram.svg" />
-								<img src="assets/fb.svg" />
+								<img src="assets/linkedin.svg" alt="linkedin" />
+								<img src="assets/instagram.svg" alt="instagram" />
+								<img src="assets/fb.svg" alt="fb" />
 							</div>
 						</div>
-
 						<div class="footer-section">
 							<h6>Say Hi!</h6>
-							<a href="#">info@iamart.in</a>
+							<a href="mailto:info@gmail.com">info@iamart.in</a>
 						</div>
 					</div>
-					<div id="underline" class="underline"></div>
+					<div class="underline"></div>
 					<div class="footer-underline"></div>
 					<p class="copyright">IAmArt © 2024</p>
 				</div>
 			</footer>
 		</div>
-		<!-- Footer ends here -->
-		<!-- locomotive js  -->
-		<script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
 
-		<!-- gsap cdn  -->
+		<!-- External Scripts -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.3/dist/locomotive-scroll.min.js"
+			defer
+		></script>
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
 			integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
+			defer
 		></script>
-
-		<!-- scrolltrigger cdn  -->
 		<script
 			src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"
 			integrity="sha512-Ic9xkERjyZ1xgJ5svx3y0u3xrvfT/uPkV99LBwe68xjy/mGtO+4eURHZBW2xW4SZbFrF1Tf090XqB+EVgXnVjw=="
 			crossorigin="anonymous"
 			referrerpolicy="no-referrer"
+			defer
 		></script>
-
-		<!-- Shery JS cdn  -->
 		<script
-			type="text/javascript"
 			src="https://cdn.jsdelivr.net/gh/aayushchouhan24/sheryjs@main/dist/Shery.js"
+			defer
 		></script>
-
-		<!-- JavaScript file  -->
-		<script src="navbar.js"></script>
-		<script src="script.js"></script>
+		<script src="navbar.js" defer></script>
+		<script src="gallery.js" defer></script>
 	</body>
 </html>

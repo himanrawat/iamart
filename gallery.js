@@ -1,19 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const images = [
-		"assets/holi/7.jpg",
-		"assets/holi/Cover.jpg",
-		"assets/holi/holi.jpg",
-		"assets/holi/holi1.jpg",
-		"assets/holi/holi10.jpg",
-		"assets/holi/holi12.jpg",
-		"assets/holi/holi13.jpg",
-		"assets/holi/holi14.jpg",
-		"assets/holi/holi2.jpg",
-		"assets/holi/holi6.jpg",
-		"assets/holi/holi7(1).jpg",
-		"assets/holi/holi7.jpg",
-		"assets/holi/holi9.jpg",
-	];
+	const images = JSON.parse(document.body.dataset.images || "[]");
 
 	const columns = Array.from({ length: 3 }, (_, i) =>
 		document.getElementById(`parallax-column-${i + 1}`)

@@ -45,6 +45,25 @@
 			crossorigin="anonymous"
 			async
 		></script>
+		<script>
+			document.addEventListener("DOMContentLoaded", function () {
+				document.body.dataset.images = JSON.stringify([
+					"assets/holi/cover.jpg",
+					"assets/holi/holi.jpg",
+					"assets/holi/holi1.jpg",
+					"assets/holi/holi2.jpg",
+					"assets/holi/holi3.jpg",
+					"assets/holi/holi4.jpg",
+					"assets/holi/holi5.jpg",
+					"assets/holi/holi6.jpg",
+					"assets/holi/holi7.jpg",
+					"assets/holi/holi8.jpg",
+					"assets/holi/holi9.jpg",
+					"assets/holi/holi10.jpg",
+					"assets/holi/holi11.jpg",
+				]);
+			});
+		</script>
 	</head>
 	<body>
 		<div id="main">
@@ -103,10 +122,16 @@
 					<span class="project-section-title">
 						<h1>Braj Holi</h1>
 						<h4>Colors of Tradition</h4>
+						<p class="prject-details-desc">
+							Experience Braj Holi through my lens, capturing the vibrant
+							colors, joyful revelry, and spiritual essence of this unique
+							celebration. Join me on a visual journey into Braj's rich cultural
+							tapestry.
+						</p>
 					</span>
 				</div>
 				<div class="project-cover">
-					<img src="assets/holi/Cover.jpg" alt="thar" />
+					<img src="assets/holi/Cover.jpg" alt="holi" />
 				</div>
 			</section>
 
@@ -119,9 +144,13 @@
 			</div>
 
 			<div id="image-slider" class="image-slider">
-				<button class="slider-btn prev-btn">&lt;</button>
+				<button class="slider-btn prev-btn">
+					<i class="fa-solid fa-angle-left"></i>
+				</button>
 				<img id="slider-image" src="" alt="Slider Image" />
-				<button class="slider-btn next-btn">&gt;</button>
+				<button class="slider-btn next-btn">
+					<i class="fa-solid fa-angle-right"></i>
+				</button>
 			</div>
 
 			<!-- Footer -->
