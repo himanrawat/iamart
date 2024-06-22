@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
 		img.classList.add("parallax-image");
 		img.setAttribute("loading", "lazy");
 		img.addEventListener("click", () => openImageSlider(index));
-		img.src = src;
 		columns[index % columns.length].appendChild(img);
 	});
 
@@ -81,4 +80,62 @@ document.addEventListener("DOMContentLoaded", function () {
 			closeImageSlider();
 		}
 	});
+
+	// GSAP Loader Animation
+	let tl = gsap.timeline();
+
+	function loadingCounter() {
+		const timer = document.querySelector(".count");
+		let count = 0;
+
+		const intervalId = setInterval(() => {
+			if (count < 100) {
+				timer.innerHTML = `${count++}`;
+			} else {
+				clearInterval(intervalId);
+				timer.innerHTML = `${count}`;
+				if (document.readyState === "complete") {
+					hideLoader();
+				} else {
+					window.addEventListener("load", hideLoader);
+				}
+			}
+		}, 35);
+	}
+
+	function hideLoader() {
+		tl.to("#loader", {
+			opacity: 0,
+			duration: 0.5,
+			onComplete: () =>
+				(document.getElementById("loader").style.display = "none"),
+		}).from(".content h1, .page-no", {
+			opacity: 0,
+			delay: 0.6,
+			y: 200,
+			stagger: 0.3,
+		});
+	}
+
+	tl.from(".loader-content h1, .loader-content-para", {
+		y: 200,
+		opacity: 0,
+		duration: 1.3,
+		stagger: 0.3,
+	})
+		.to(".animate", { animationName: "anime", opacity: 1 })
+		.from(".counter", { opacity: 1, stagger: 0.3, onComplete: loadingCounter });
+
+	// Shery Integration
+	if (window.innerWidth >= 1024) {
+		Shery.mouseFollower({
+			skew: true,
+			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+			duration: 1,
+		});
+		Shery.makeMagnet(".logo, .navitems a", {
+			ease: "cubic-bezier(0.23, 1, 0.320, 1)",
+			duration: 1,
+		});
+	}
 });
