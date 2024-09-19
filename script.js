@@ -146,3 +146,41 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 });
+
+// Select the social-icons container
+const socialIconsContainer = document.querySelector(".social-icons");
+
+// Define the social media links
+const socialMediaLinks = {
+	linkedin: "https://www.linkedin.com/company/iamartproduction/",
+	instagram: "https://www.instagram.com/iamart.india?igsh=MWppZjAwcHA3bnpzeg==",
+	facebook: "https://www.facebook.com/share/obxUATrgM2hJQwHi/?mibextid=LQQJ4d",
+};
+
+// Select all img elements inside the social-icons container
+const socialIcons = socialIconsContainer.querySelectorAll("img");
+
+// Loop through each icon and wrap it in an anchor tag with the respective link
+socialIcons.forEach((icon) => {
+	// Get the src attribute of the icon to identify the platform
+	const iconSrc = icon.getAttribute("src");
+
+	// Determine the platform from the src and get the respective URL
+	let platform = "";
+	if (iconSrc.includes("linkedin")) {
+		platform = "linkedin";
+	} else if (iconSrc.includes("instagram")) {
+		platform = "instagram";
+	} else if (iconSrc.includes("fb")) {
+		platform = "facebook";
+	}
+
+	// Create a new anchor tag
+	const link = document.createElement("a");
+	link.href = socialMediaLinks[platform]; // Set the href attribute
+	link.target = "_blank"; // Open link in a new tab
+
+	// Insert the anchor tag before the icon and append the icon to the anchor tag
+	icon.parentNode.insertBefore(link, icon);
+	link.appendChild(icon);
+});

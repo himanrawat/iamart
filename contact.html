@@ -161,21 +161,35 @@
 						<h2 style="color: #151515; margin-top: 2vw">Hello,</h2>
 					</div>
 				</div>
-				<form>
+				<form
+					action="https://formspree.io/f/your_formspree_endpoint"
+					method="POST"
+				>
 					<div class="form-details">
 						<label>My name is</label>
-						<input placeholder="Enter your name here" />
+						<input name="name" placeholder="Enter your name here" required />
 					</div>
 					<div class="form-details">
 						<label>HERE IS MY EMAIL</label>
-						<input placeholder="Enter your email here" />
+						<input
+							name="email"
+							type="email"
+							placeholder="Enter your email here"
+							required
+						/>
 					</div>
 					<div class="form-details">
-						<label>I’M LOOKING FOR</label>
-						<input placeholder="Enter your project details here" />
+						<label>I'M LOOKING FOR</label>
+						<input
+							name="message"
+							placeholder="Enter your project details here"
+							required
+						/>
 					</div>
 					<div class="contact-btn-div send-div">
-						<button class="send-form btn-round">Contact Us</button>
+						<button type="submit" class="send-form btn-round">
+							Contact Us
+						</button>
 					</div>
 				</form>
 			</section>
